@@ -1,0 +1,16 @@
+version: '3'
+services:
+  nodejs:
+    build:
+      context: .
+    environment:
+      TZ: Asia/Tokyo
+    tty: true
+    volumes:
+      - node_modules:/workspace/node_modules
+      - ..:/workspace:cached
+    ports:
+      - "3000:3000"
+
+volumes:
+  node_modules:

@@ -1,0 +1,50 @@
+{
+  "name": "nodejs",
+  "dockerComposeFile": ["./docker-compose.yml"],
+  "service": "nodejs",
+  "workspaceFolder": "/workspace",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "latest"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.tabSize": 2,
+        "editor.bracketPairColorization.enabled": true,
+        "editor.guides.bracketPairs": true,
+        "editor.guides.bracketPairsHorizontal": true,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true,
+          "source.fixAll.stylelint": true
+        },
+        "css.validate": false,
+        "less.validate": false,
+        "scss.validate": false,
+        "eslint.packageManager": "npm",
+        "eslint.workingDirectories": [{ "mode": "auto" }],
+        "typescript.enablePromptUseWorkspaceTsdk": true
+      },
+      "extensions": [
+        // linter
+        "dbaeumer.vscode-eslint",
+        "stylelint.vscode-stylelint",
+        // code formatter
+        "esbenp.prettier-vscode",
+        // auto rename tags
+        "formulahendry.auto-rename-tag",
+        // auto completion
+        "VisualStudioExptTeam.vscodeintellicode",
+        // indent color
+        "oderwat.indent-rainbow",
+        // git
+        "donjayamanne.githistory",
+        // debug
+        "msjsdiag.debugger-for-chrome"
+      ]
+    }
+  }
+}
