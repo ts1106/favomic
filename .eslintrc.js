@@ -18,5 +18,7 @@ module.exports = {
     project: './tsconfig.eslint.json',
   },
   plugins: ['react'],
-  rules: {},
+  rules: {
+    'react/react-in-jsx-scope': 'off',
+  },
 };
