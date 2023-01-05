@@ -1,5 +1,5 @@
-import { SearchIcon } from '@chakra-ui/icons';
 import {
+  Box,
   Button,
   Divider,
   Flex,
@@ -7,16 +7,14 @@ import {
   Input,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalOverlay,
-  Stack,
   Tag,
-  TagCloseButton,
   TagLabel,
-  useBreakpointValue,
+  Text,
   useDisclosure,
   Wrap,
+  WrapItem,
 } from '@chakra-ui/react';
 import useSearch from 'hooks/useSearch';
 import React from 'react';
@@ -27,9 +25,16 @@ type Props = {
 
 export default function Search({ button }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { changeKeyword, tags, addTag, deleteTag, resetTags } = useSearch();
+  const {
+    changeKeyword,
+    tags,
+    allTag,
+    isSelectedTag,
+    addTag,
+    deleteTag,
+    resetTags,
+  } = useSearch();
   const newButton = React.cloneElement(button, { onClick: onOpen });
-  const allTags = ['異世界', '転生', '恋愛'];
 
   return (
     <>
@@ -42,31 +47,55 @@ export default function Search({ button }: Props) {
               <FormControl>
                 <Input
                   onChange={(e) => changeKeyword(e.target.value)}
-                  placeholder="Search"
+                  placeholder="作品名"
                 />
               </FormControl>
             </Flex>
-            <Wrap direction="row" spacing={2} mt={2}>
-              {tags.map((tag) => (
-                <Tag size="md" key={tag}>
-                  <TagLabel>{tag}</TagLabel>
-                  <TagCloseButton onClick={() => deleteTag(tag)} />
-                </Tag>
-              ))}
-            </Wrap>
-            <Divider borderColor="gray.400" mt={2} />
-            <Wrap direction="row" spacing={2} mt={2}>
-              {allTags.map((tag) => (
-                <Tag
-                  as="button"
-                  size="md"
-                  key={tag}
-                  onClick={() => addTag(tag)}
+            <Box mt={4}>
+              <Flex justify="space-between" align="center">
+                <Text fontWeight={600} ml={2}>
+                  タグ
+                </Text>
+                <Button
+                  size="sm"
+                  variant="unstyled"
+                  onClick={resetTags}
+                  isDisabled={!tags.length}
+                  mr={2}
                 >
-                  <TagLabel>{tag}</TagLabel>
-                </Tag>
-              ))}
-            </Wrap>
+                  選択解除
+                </Button>
+              </Flex>
+              <Divider borderColor="gray.400" mt={1} />
+              <Wrap direction="row" spacing={2} mt={2}>
+                {allTag.map((tag) => (
+                  <WrapItem>
+                    {isSelectedTag(tag) ? (
+                      <Tag
+                        as="button"
+                        size="md"
+                        key={tag.id}
+                        onClick={() => deleteTag(tag.id)}
+                        colorScheme="blue"
+                      >
+                        <TagLabel>{tag.name}</TagLabel>
+                      </Tag>
+                    ) : (
+                      <Tag
+                        as="button"
+                        size="md"
+                        key={tag.id}
+                        onClick={() => addTag(tag)}
+                        variant="outline"
+                        colorScheme="blue"
+                      >
+                        <TagLabel>{tag.name}</TagLabel>
+                      </Tag>
+                    )}
+                  </WrapItem>
+                ))}
+              </Wrap>
+            </Box>
           </ModalBody>
         </ModalContent>
       </Modal>

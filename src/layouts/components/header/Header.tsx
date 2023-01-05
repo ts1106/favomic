@@ -4,17 +4,15 @@ import {
   Stack,
   Button,
   useColorModeValue,
-  Text,
   Link,
   useBreakpointValue,
-  useDisclosure,
   IconButton,
 } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import { SearchIcon } from '@chakra-ui/icons';
 import { LogoLIcon, LogoSIcon } from 'assets/Logo';
 import Search from 'components/Search/Search';
-import MenuNavigation from './MenuNavigation';
+import { Navigation, SideNavigation } from './Navigation';
 
 export default function Header() {
   const LogoIcon = useBreakpointValue({
@@ -37,16 +35,24 @@ export default function Header() {
         align="center"
       >
         <Flex flex={1} display={{ base: 'flex', md: 'none' }}>
-          <MenuNavigation />
+          <SideNavigation />
         </Flex>
-        <Flex flex={1} justifyContent={{ base: 'center', md: 'start' }}>
+
+        <Flex
+          flex="auto"
+          justifyContent={{ base: 'center', md: 'start' }}
+          align="center"
+        >
           <Link as={ReactRouterLink} to="/" display="block">
             {LogoIcon}
           </Link>
+          <Flex display={{ base: 'none', md: 'flex' }} ml={20}>
+            <Navigation />
+          </Flex>
         </Flex>
 
         <Stack
-          flex={1}
+          flex="1"
           display={{ base: 'none', md: 'flex' }}
           direction="row"
           spacing={6}
@@ -63,7 +69,8 @@ export default function Header() {
               />
             }
           />
-          <Button as="a" fontSize="sm" fontWeight={400} variant="link" href="#">
+          {/* Todo ユーザーログイン機能の追加 */}
+          {/* <Button as="a" fontSize="sm" fontWeight={400} variant="link" href="#">
             Sign In
           </Button>
           <Button
@@ -79,7 +86,7 @@ export default function Header() {
             }}
           >
             Sign Up
-          </Button>
+          </Button> */}
         </Stack>
         <Flex
           display={{ base: 'flex', md: 'none' }}
