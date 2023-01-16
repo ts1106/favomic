@@ -22,14 +22,14 @@ type NavItem = {
 };
 
 const NAV_ITEMS: NavItem[] = [
-  {
-    label: 'ホーム',
-    path: '/',
-  },
-  {
-    label: 'ランキング',
-    path: '/ranking',
-  },
+  // {
+  //   label: 'ホーム',
+  //   path: '/',
+  // },
+  // {
+  //   label: 'ランキング',
+  //   path: '/ranking',
+  // },
 ];
 
 function Navigation() {

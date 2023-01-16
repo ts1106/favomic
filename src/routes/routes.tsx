@@ -1,5 +1,5 @@
+import Home from 'pages/Home';
 import { createBrowserRouter } from 'react-router-dom';
-import App from '../App';
 import DefaultLayout from '../layouts/DefaultLayout';
 
 export default function Router() {
@@ -10,7 +10,7 @@ export default function Router() {
       children: [
         {
           path: '/',
-          element: <App />,
+          element: <Home />,
         },
       ],
     },
