@@ -3,16 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import { RouterProvider } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import reportWebVitals from './reportWebVitals';
 import Router from './routes/routes';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
+
+const queryClient = new QueryClient();
+
 root.render(
   <React.StrictMode>
     <ChakraProvider>
-      <RouterProvider router={Router()} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={Router()} />
+      </QueryClientProvider>
     </ChakraProvider>
   </React.StrictMode>,
 );

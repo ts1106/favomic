@@ -21,7 +21,7 @@ export default function Header() {
   });
 
   return (
-    <Box as="header">
+    <Box as="header" mb={2}>
       <Flex
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
